@@ -10,25 +10,25 @@ export default class Counter extends Component {
         counter: 0
     }
 
-    increment = (increment) => {
+    handleCount = (increment) => {
         this.setState((prevState) => {
             return { counter: prevState.counter + increment }
         });
     }
 
-    reset = () => {
+    handleReset = () => {
         this.setState({ counter: 0 });
     }
 
     render() {
         return (
             <div className="counter" >
-                <CounterButtons incrementBy={1} incrementFunction={this.increment} />
-                <CounterButtons incrementBy={5} incrementFunction={this.increment} />
-                <CounterButtons incrementBy={10} incrementFunction={this.increment} />
-                <CounterButtons incrementBy={100} incrementFunction={this.increment} />
+                <CounterButtons by={1} countFunction={this.handleCount} />
+                <CounterButtons by={5} countFunction={this.handleCount} />
+                <CounterButtons by={10} countFunction={this.handleCount} />
+                <CounterButtons by={100} countFunction={this.handleCount} />
                 <span className="count">{this.state.counter}</span>
-                <ResetButton resetFunction={this.reset}/>
+                <ResetButton resetFunction={this.handleReset}/>
             </div>
         )
     }
