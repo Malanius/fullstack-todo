@@ -6,10 +6,12 @@ const IncrementButton = (props) => {
     return (
         <div>
             <button
+                className="ctrButton"
                 onClick={() => props.incrementFunction(props.incrementBy)}>
                 +{props.incrementBy}
             </button>
             <button
+                className="ctrButton"
                 onClick={() => props.incrementFunction(props.incrementBy * -1)}>
                 -{props.incrementBy}
             </button>

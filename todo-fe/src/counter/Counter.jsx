@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Counter.css';
 import CounterButtons from './counterButtons/CounterButtons';
+import ResetButton from './resetButton/ResetButton';
 
 export default class Counter extends Component {
 
@@ -15,6 +16,10 @@ export default class Counter extends Component {
         });
     }
 
+    reset = () => {
+        this.setState({ counter: 0 });
+    }
+
     render() {
         return (
             <div className="counter" >
@@ -23,6 +28,7 @@ export default class Counter extends Component {
                 <CounterButtons incrementBy={10} incrementFunction={this.increment} />
                 <CounterButtons incrementBy={100} incrementFunction={this.increment} />
                 <span className="count">{this.state.counter}</span>
+                <ResetButton resetFunction={this.reset}/>
             </div>
         )
     }
