@@ -1,14 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './IncrementButton.css';
+import './CounterButtons.css';
 
 const IncrementButton = (props) => {
-    const title = props.incrementBy > 0 ? '+' + props.incrementBy : props.incrementBy;
     return (
         <div>
             <button
                 onClick={() => props.incrementFunction(props.incrementBy)}>
-                {title}
+                +{props.incrementBy}
+            </button>
+            <button
+                onClick={() => props.incrementFunction(props.incrementBy * -1)}>
+                -{props.incrementBy}
             </button>
         </div>
     )

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Counter.css';
-import IncrementButton from './incrementButton/IncrementButton';
+import CounterButtons from './counterButtons/CounterButtons';
 
 export default class Counter extends Component {
 
@@ -18,14 +18,10 @@ export default class Counter extends Component {
     render() {
         return (
             <div className="counter" >
-                <IncrementButton incrementBy={1} incrementFunction={this.increment} />
-                <IncrementButton incrementBy={-1} incrementFunction={this.increment} />
-                <IncrementButton incrementBy={5} incrementFunction={this.increment} />
-                <IncrementButton incrementBy={-5} incrementFunction={this.increment} />
-                <IncrementButton incrementBy={10} incrementFunction={this.increment} />
-                <IncrementButton incrementBy={-10} incrementFunction={this.increment} />
-                <IncrementButton incrementBy={100} incrementFunction={this.increment} />
-                <IncrementButton incrementBy={-100} incrementFunction={this.increment} />
+                <CounterButtons incrementBy={1} incrementFunction={this.increment} />
+                <CounterButtons incrementBy={5} incrementFunction={this.increment} />
+                <CounterButtons incrementBy={10} incrementFunction={this.increment} />
+                <CounterButtons incrementBy={100} incrementFunction={this.increment} />
                 <span className="count">{this.state.counter}</span>
             </div>
         )
