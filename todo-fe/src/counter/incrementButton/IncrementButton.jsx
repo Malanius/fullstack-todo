@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './IncrementButton.css';
 
 const IncrementButton = (props) => {
     return (
