@@ -1,11 +1,10 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 export class Login extends Component {
 
     state = {
         username: '',
         password: '',
-        correct: false,
         showMessage: false
     }
 
@@ -20,19 +19,15 @@ export class Login extends Component {
 
     loginHandler = () => {
         //for now valid user is test:test
-        this.setState({
-            showMessage: true,
-            correct: this.state.username === 'test' && this.state.password === 'test'
-        })
+        if (this.state.username === 'test' && this.state.password === 'test') {
+            this.props.history.push('/welcome');
+        } else (
+            this.setState({ showMessage: true })
+        )
 
     }
 
     render() {
-        let message = '';
-        if (this.state.showMessage) {
-            message = this.state.correct ? 'Login sucesfull...' : 'Login incorrect!'
-        }
-
         return (
             <div className="login">
                 User:
@@ -49,7 +44,7 @@ export class Login extends Component {
                     value={this.state.password}
                     onChange={(event) => this.inputChangeHandler(event)} />
                 <button onClick={() => this.loginHandler()}>Login</button>
-                <p>{message}</p>
+                <p>{this.state.showMessage && 'Login incorrect!'}</p>
             </div>
         )
     }
