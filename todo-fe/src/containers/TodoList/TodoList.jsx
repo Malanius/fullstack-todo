@@ -26,7 +26,7 @@ export class TodoList extends Component {
                         </thead>
                         <tbody>
                             {this.state.todos.map(todo => (
-                                <tr>
+                                <tr key={todo.id}>
                                     <td>{todo.description}</td>
                                     <td>{todo.done ? 'Yes' : 'No'}</td>
                                     <td>{todo.dueDate.toString()}</td>
