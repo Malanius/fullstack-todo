@@ -29,22 +29,27 @@ export class Login extends Component {
 
     render() {
         return (
-            <div className="login">
-                User:
+            <div>
+                <h1>Login</h1>
+                <div className="container">
+                    User:
                 <input type="text"
-                    name="username"
-                    placeholder="your user name"
-                    value={this.state.username}
-                    onChange={(event) => this.inputChangeHandler(event)} />
-                Password:
+                        name="username"
+                        placeholder="your user name"
+                        value={this.state.username}
+                        onChange={(event) => this.inputChangeHandler(event)} />
+                    Password:
                 <input
-                    type="password"
-                    name="password"
-                    placeholder="your password"
-                    value={this.state.password}
-                    onChange={(event) => this.inputChangeHandler(event)} />
-                <button onClick={() => this.loginHandler()}>Login</button>
-                <p>{this.state.showMessage && 'Login incorrect!'}</p>
+                        type="password"
+                        name="password"
+                        placeholder="your password"
+                        value={this.state.password}
+                        onChange={(event) => this.inputChangeHandler(event)} />
+                    <button 
+                        className="btn btn-success"
+                        onClick={() => this.loginHandler()}>Login</button>
+                    {this.state.showMessage && <p className="alert alert-warning">Login incorrect!</p>}
+                </div>
             </div>
         )
     }
