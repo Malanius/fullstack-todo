@@ -2,8 +2,8 @@ import React from 'react';
 
 export default () => {
     return (
-        <div className="footer">
-            <hr />Footer
-        </div >
+        <footer className="footer">
+            <span className="text-muted">Built by Malanius, 2019</span>
+        </footer>
     )
 }
