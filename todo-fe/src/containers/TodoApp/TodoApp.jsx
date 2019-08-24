@@ -14,7 +14,7 @@ export class TodoApp extends Component {
                     <Switch>
                         <Route path="/" exact component={Login} />
                         <Route path="/login" component={Login} />
-                        <Route path="/welcome" component={Welcome} />
+                        <Route path="/welcome/:name" component={Welcome} />
                         <Route component={NavError} />
                     </Switch>
                 </Router>

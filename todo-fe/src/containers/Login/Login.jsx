@@ -20,7 +20,7 @@ export class Login extends Component {
     loginHandler = () => {
         //for now valid user is test:test
         if (this.state.username === 'test' && this.state.password === 'test') {
-            this.props.history.push('/welcome');
+            this.props.history.push(`/welcome/${this.state.username}`);
         } else (
             this.setState({ showMessage: true })
         )

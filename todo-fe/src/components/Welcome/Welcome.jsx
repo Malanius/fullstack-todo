@@ -1,9 +1,9 @@
 import React from 'react';
 
-export default () => {
+export default (props) => {
     return (
         <div>
-            Welcome to the TODO app
+            Welcome to the TODO app, {props.match.params.name}!
         </div>
     )
 }
