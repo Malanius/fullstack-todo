@@ -6,6 +6,7 @@ import NavError from '../../components/NavError/NavError';
 import TodoList from '../TodoList/TodoList';
 import Header from '../../components/UI/Header/Header';
 import Footer from '../../components/UI/Footer/Footer';
+import Logout from '../../components/Logout/Logout';
 
 
 export class TodoApp extends Component {
@@ -18,6 +19,7 @@ export class TodoApp extends Component {
                     <Switch>
                         <Route path="/" exact component={Login} />
                         <Route path="/login" component={Login} />
+                        <Route path="/logout" component={Logout} />
                         <Route path="/welcome/:name" component={Welcome} />
                         <Route path="/todos" component={TodoList} />
                         <Route component={NavError} />
