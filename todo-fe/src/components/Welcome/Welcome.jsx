@@ -8,12 +8,16 @@ export default class extends Component {
         welcomeMessage: ''
     }
 
-    retrieveWelcomeMessage = () => {
+    retrieveWelcomeMessage = (name) => {
         // HelloService.executeHello()
         //     .then(response => this.setState({ welcomeMessage: response.data }))
         //     .catch(error => console.log(error));
 
-        HelloService.executeHelloBean()
+        // HelloService.executeHelloBean()
+        //     .then(response => this.setState({ welcomeMessage: response.data.message }))
+        //     .catch(error => console.log(error));
+
+        HelloService.executeHelloParam(name)
             .then(response => this.setState({ welcomeMessage: response.data.message }))
             .catch(error => console.log(error));
     }
@@ -28,7 +32,8 @@ export default class extends Component {
                 </div>
                 <div className="container">
                     Click here to get customized message.
-                <button onClick={this.retrieveWelcomeMessage} className="btn btn-success">Get welcome message</button>
+                <button onClick={() => this.retrieveWelcomeMessage(this.props.match.params.name)}
+                        className="btn btn-success">Get welcome message</button>
                 </div>
                 <div className="container">
                     {this.state.welcomeMessage}
