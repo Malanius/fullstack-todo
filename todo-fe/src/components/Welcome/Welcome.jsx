@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import HelloService from '../HelloService/HelloService';
 
 export default (props) => {
 
     const retrieveWelcomeMessage = () =>{
-        console.log('retrieve message')
+        HelloService.execute().then(response => console.log(response));
     }
 
     return (
