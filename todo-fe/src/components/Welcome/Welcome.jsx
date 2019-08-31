@@ -19,7 +19,7 @@ export default class extends Component {
 
         HelloService.executeHelloParam(name)
             .then(response => this.setState({ welcomeMessage: response.data.message }))
-            .catch(error => console.log(error));
+            .catch(error => this.setState({welcomeMessage: error.response.data.message}));
     }
 
     render() {
