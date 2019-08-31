@@ -9,8 +9,12 @@ export default class extends Component {
     }
 
     retrieveWelcomeMessage = () => {
-        HelloService.executeHello()
-            .then(response => this.setState({ welcomeMessage: response.data }))
+        // HelloService.executeHello()
+        //     .then(response => this.setState({ welcomeMessage: response.data }))
+        //     .catch(error => console.log(error));
+
+        HelloService.executeHelloBean()
+            .then(response => this.setState({ welcomeMessage: response.data.message }))
             .catch(error => console.log(error));
     }
 
