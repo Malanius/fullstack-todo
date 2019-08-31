@@ -2,7 +2,7 @@ import axios from 'axios';
 
 class HelloService {
 
-    execute() {
+    executeHello() {
         return axios.get('http://localhost:8080/hello-world')
     }
 }

@@ -1,24 +1,35 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import HelloService from '../HelloService/HelloService';
 
-export default (props) => {
+export default class extends Component {
 
-    const retrieveWelcomeMessage = () =>{
-        HelloService.execute().then(response => console.log(response));
+    state = {
+        welcomeMessage: ''
     }
 
-    return (
-        <>
-            <h1>Welcome</h1>
-            <div className="container">
-                Welcome to the TODO app, {props.match.params.name}!
+    retrieveWelcomeMessage = () => {
+        HelloService.executeHello()
+            .then(response => this.setState({ welcomeMessage: response.data }))
+            .catch(error => console.log(error));
+    }
+
+    render() {
+        return (
+            <>
+                <h1>Welcome</h1>
+                <div className="container">
+                    Welcome to the TODO app, {this.props.match.params.name}!
                 <p><Link to="/todos">View TODOs</Link></p>
-            </div>
-            <div className="container">
-                Click here to get customized message.
-                <button onClick={retrieveWelcomeMessage} className="btn btn-success">Get welcome message</button>
-            </div>
-        </>
-    )
+                </div>
+                <div className="container">
+                    Click here to get customized message.
+                <button onClick={this.retrieveWelcomeMessage} className="btn btn-success">Get welcome message</button>
+                </div>
+                <div className="container">
+                    {this.state.welcomeMessage}
+                </div>
+            </>
+        )
+    }
 }
