@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 
 import Auth from '../../Auth/Auth';
 import TodoDataService from './TodoDataService';
@@ -52,7 +53,7 @@ export class TodoList extends Component {
                                 <tr key={todo.id}>
                                     <td>{todo.description}</td>
                                     <td>{todo.done ? 'Yes' : 'No'}</td>
-                                    <td>{todo.deadline}</td>
+                                    <td>{moment(todo.deadline).format('YYYY-MM-DD')}</td>
                                     <td>
                                         <button className="btn btn-warning"
                                             onClick={() => this.updateTodo(todo.id)}>Update</button>
