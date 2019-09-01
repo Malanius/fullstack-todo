@@ -10,22 +10,30 @@ export default class Todo extends Component {
         deadline: moment(new Date()).format('YYYY-MM-DD')
     }
 
+    onSubmit(values){
+        console.log(values);
+    }
+
     render() {
+
+        let {description, deadline} = this.state;
+
         return (
             <div>
                 <h1>Todo</h1>
                 <div className="container">
-                    <Formik>
+                    <Formik initialValues={{ description, deadline }}
+                        onSubmit={this.onSubmit}>
                         {
                             (props) => (
-                                <Form>
+                                <Form >
                                     <fieldset className="form-group">
                                         <label>Description</label>
-                                        <Field className="form-control" type="text" name="description"/>
+                                        <Field className="form-control" type="text" name="description" />
                                     </fieldset>
                                     <fieldset className="form-group">
                                         <label>Deadline</label>
-                                        <Field className="form-control"type="date" name="deadline"/>
+                                        <Field className="form-control" type="date" name="deadline" />
                                     </fieldset>
                                     <button className="btn btn-success" type="submit">Save</button>
                                 </Form>
