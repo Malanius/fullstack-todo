@@ -2,6 +2,7 @@ package net.malanius.todo.rest;
 
 import net.malanius.todo.data.Todo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,7 +25,7 @@ public class TodoController {
     }
 
     @GetMapping("/users/{username}/todos/{id}")
-    public Todo getTodoById(@PathVariable String username, @PathVariable long id){
+    public Todo getTodoById(@PathVariable String username, @PathVariable long id) {
         return todoService.findById(id);
     }
 
@@ -36,5 +37,11 @@ public class TodoController {
         }
 
         return ResponseEntity.notFound().build();
+    }
+
+    @PutMapping("/users/{username}/todos/{id}")
+    public ResponseEntity<Todo> updateTodo(@PathVariable String username, @PathVariable long id, @RequestBody Todo todo) {
+        Todo todoUpdated = todoService.saveTodo(todo);
+        return ResponseEntity.ok(todoUpdated);
     }
 }
