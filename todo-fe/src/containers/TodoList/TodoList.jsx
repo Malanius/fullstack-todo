@@ -32,6 +32,10 @@ export class TodoList extends Component {
         this.props.history.push(`/todos/${id}`);
     }
 
+    addTodo(){
+        this.props.history.push(`/todos/new`);
+    }
+
     render() {
         return (
             <div className="todoList">
@@ -66,6 +70,9 @@ export class TodoList extends Component {
                             ))}
                         </tbody>
                     </table>
+                    <div className="row">
+                        <button className="btn btn-primary" onClick={() => this.addTodo()}>Add</button>
+                    </div>
                 </div>
             </div>
         )

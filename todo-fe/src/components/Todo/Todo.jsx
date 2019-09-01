@@ -14,6 +14,11 @@ export default class Todo extends Component {
     }
 
     componentDidMount() {
+
+        if (this.state.id === 'new') {
+            return;
+        }
+
         this.fetchTodo();
     }
 
@@ -44,12 +49,20 @@ export default class Todo extends Component {
     }
 
     onSubmit(values) {
-        TodoDataService.updateTodo(Auth.getUser(), this.state.id, {
-            id: this.state.id,
+
+        const todo = {
+            id: this.state.id === 'new' ? -1 : this.state.id,
             description: values.description,
             deadline: values.deadline
-        }).then(() => this.props.history.push('/todos'));
-        
+        }
+
+        if (this.state.id === 'new') {
+            TodoDataService.createTodo(Auth.getUser(), todo)
+                .then(() => this.props.history.push('/todos'));
+        } else {
+            TodoDataService.updateTodo(Auth.getUser(), this.state.id, todo)
+                .then(() => this.props.history.push('/todos'));
+        }
     }
 
     render() {
