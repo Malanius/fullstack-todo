@@ -44,7 +44,12 @@ export default class Todo extends Component {
     }
 
     onSubmit(values) {
-        console.log(values);
+        TodoDataService.updateTodo(Auth.getUser(), this.state.id, {
+            id: this.state.id,
+            description: values.description,
+            deadline: values.deadline
+        }).then(() => this.props.history.push('/todos'));
+        
     }
 
     render() {
@@ -56,8 +61,8 @@ export default class Todo extends Component {
                 <h1>Todo</h1>
                 <div className="container">
                     <Formik initialValues={{ description, deadline }}
-                        onSubmit={this.onSubmit}
-                        validate={this.validate}
+                        onSubmit={(values) => this.onSubmit(values)}
+                        validate={(values) => this.validate(values)}
                         validateOnChange={false}
                         validateOnBlur={false}
                         enableReinitialize>
