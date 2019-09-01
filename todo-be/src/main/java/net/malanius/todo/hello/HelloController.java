@@ -1,4 +1,4 @@
-package net.malanius.todo;
+package net.malanius.todo.hello;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
