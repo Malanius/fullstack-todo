@@ -28,7 +28,6 @@ export class TodoList extends Component {
     }
 
     updateTodo(id) {
-        console.log(`Updating todo ${id}`);
         this.props.history.push(`/todos/${id}`);
     }
 

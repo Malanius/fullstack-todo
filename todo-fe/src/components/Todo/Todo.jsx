@@ -2,24 +2,41 @@ import React, { Component } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import moment from 'moment';
 
+import Auth from '../../Auth/Auth';
+import TodoDataService from '../../containers/TodoList/TodoDataService';
+
 export default class Todo extends Component {
 
     state = {
         id: this.props.match.params.id,
-        description: 'Todo 1',
+        description: '',
         deadline: moment(new Date()).format('YYYY-MM-DD')
+    }
+
+    componentDidMount() {
+        this.fetchTodo();
+    }
+
+    fetchTodo() {
+        TodoDataService.getTodoById(Auth.getUser(), this.state.id)
+            .then(response => {
+                this.setState({
+                    description: response.data.description,
+                    deadline: moment(response.data.deadline).format('YYYY-MM-DD')
+                })
+            })
     }
 
     validate(values) {
         let errors = {};
 
-        if(!values.description){
+        if (!values.description) {
             errors.description = 'Description must be entered!'
-        }else if (values.description.length < 5){
+        } else if (values.description.length < 5) {
             errors.description = 'Description must have at least 5 characters'
         }
 
-        if(!moment(values.deadline).isValid || !values.deadline){
+        if (!moment(values.deadline).isValid || !values.deadline) {
             errors.deadline = 'Deadline must be entered!'
         }
 
@@ -42,7 +59,8 @@ export default class Todo extends Component {
                         onSubmit={this.onSubmit}
                         validate={this.validate}
                         validateOnChange={false}
-                        validateOnBlur={false}>
+                        validateOnBlur={false}
+                        enableReinitialize>
                         {
                             (props) => (
                                 <Form>
