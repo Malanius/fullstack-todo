@@ -11,17 +11,7 @@ class HelloService {
     }
 
     executeHelloParam(name) {
-        const username = 'test';
-        const password = 'test';
-        const authHeader = 'Basic ' + window.btoa(username + ":" + password);
-
-        return axios.get(`http://localhost:8080/hello-world-param/${name}`,
-            {
-                headers: {
-                    authorization: authHeader
-            }
-            }
-        );
+        return axios.get(`http://localhost:8080/hello-world-param/${name}`);
     }
 }
 
