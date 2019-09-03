@@ -4,9 +4,10 @@ class Auth {
 
     userKey = 'authenticatedUser';
 
-    registerLogin(username) {
+    registerLogin(username, password) {
         sessionStorage.setItem(this.userKey, username);
-        this.setAxiosInterceptors();
+        const authHeader = 'Basic ' + window.btoa(username + ":" + password);
+        this.setAxiosInterceptors(authHeader);
     }
 
     deregisterLogin() {
@@ -22,12 +23,7 @@ class Auth {
         return sessionStorage.getItem(this.userKey);
     }
 
-    setAxiosInterceptors() {
-
-        const username = 'test';
-        const password = 'test';
-        const authHeader = 'Basic ' + window.btoa(username + ":" + password);
-
+    setAxiosInterceptors(authHeader) {
         axios.interceptors.request.use(
             (config) => {
                 if (this.isLoggedIn()) {

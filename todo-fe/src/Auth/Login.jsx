@@ -21,7 +21,7 @@ export class Login extends Component {
     loginHandler = () => {
         //for now valid user is test:test
         if (this.state.username === 'test' && this.state.password === 'test') {
-            Auth.registerLogin(this.state.username)
+            Auth.registerLogin(this.state.username, this.state.password);
             this.props.history.push(`/welcome/${this.state.username}`);
         } else (
             this.setState({ showMessage: true })
