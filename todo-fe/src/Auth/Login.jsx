@@ -20,13 +20,15 @@ export class Login extends Component {
 
     loginHandler = () => {
         //for now valid user is test:test
-        if (this.state.username === 'test' && this.state.password === 'test') {
-            Auth.registerLogin(this.state.username, this.state.password);
-            this.props.history.push(`/welcome/${this.state.username}`);
-        } else (
-            this.setState({ showMessage: true })
-        )
-
+        Auth.validateLogin(this.state.username, this.state.password)
+            .then((response) => {
+                Auth.registerLogin(this.state.username, this.state.password);
+                this.props.history.push(`/welcome/${this.state.username}`);
+            })
+            .catch((error) => {
+                console.log(error);
+                this.setState({ showMessage: true })
+            })
     }
 
     render() {
@@ -47,7 +49,7 @@ export class Login extends Component {
                         placeholder="your password"
                         value={this.state.password}
                         onChange={(event) => this.inputChangeHandler(event)} />
-                    <button 
+                    <button
                         className="btn btn-success"
                         onClick={() => this.loginHandler()}>Login</button>
                     {this.state.showMessage && <p className="alert alert-warning">Login incorrect!</p>}

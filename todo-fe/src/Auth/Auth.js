@@ -4,10 +4,23 @@ class Auth {
 
     userKey = 'authenticatedUser';
 
+    validateLogin(username, password){
+        return axios.get('http://localhost:8080/auth',
+            {
+                headers: {
+                    authorization: this.createBasicAuthToken(username, password)
+                }
+            }
+        );
+    }
+
+    createBasicAuthToken(username, password){
+        return 'Basic ' + window.btoa(username + ":" + password);
+    }
+
     registerLogin(username, password) {
         sessionStorage.setItem(this.userKey, username);
-        const authHeader = 'Basic ' + window.btoa(username + ":" + password);
-        this.setAxiosInterceptors(authHeader);
+        this.setAxiosInterceptors(this.createBasicAuthToken(username, password));
     }
 
     deregisterLogin() {
