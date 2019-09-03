@@ -22,7 +22,7 @@ export class Login extends Component {
         //for now valid user is test:test
         Auth.validateLogin(this.state.username, this.state.password)
             .then((response) => {
-                Auth.registerLogin(this.state.username, this.state.password);
+                Auth.registerLogin(this.state.username, response.data.token);
                 this.props.history.push(`/welcome/${this.state.username}`);
             })
             .catch((error) => {

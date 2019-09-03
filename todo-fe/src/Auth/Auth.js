@@ -3,24 +3,20 @@ import axios from 'axios';
 class Auth {
 
     userKey = 'authenticatedUser';
+    tokenKey = 'userToken'
 
-    validateLogin(username, password){
-        return axios.get('http://localhost:8080/auth',
-            {
-                headers: {
-                    authorization: this.createBasicAuthToken(username, password)
-                }
-            }
-        );
+    validateLogin(username, password) {
+        return axios.post('http://localhost:8080/authenticate', { username, password });
     }
 
-    createBasicAuthToken(username, password){
+    createBasicAuthToken(username, password) {
         return 'Basic ' + window.btoa(username + ":" + password);
     }
 
-    registerLogin(username, password) {
+    registerLogin(username, jwtToken) {
         sessionStorage.setItem(this.userKey, username);
-        this.setAxiosInterceptors(this.createBasicAuthToken(username, password));
+        sessionStorage.setItem(this.tokenKey, jwtToken);
+        this.setAxiosInterceptors(jwtToken);
     }
 
     deregisterLogin() {
@@ -36,11 +32,11 @@ class Auth {
         return sessionStorage.getItem(this.userKey);
     }
 
-    setAxiosInterceptors(authHeader) {
+    setAxiosInterceptors(jwtToken) {
         axios.interceptors.request.use(
             (config) => {
                 if (this.isLoggedIn()) {
-                    config.headers.authorization = authHeader;
+                    config.headers.authorization = 'Bearer ' + jwtToken;
                 }
                 return config;
             }
