@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {API_URL} from '../constants';
 
 class Auth {
 
@@ -6,7 +7,7 @@ class Auth {
     tokenKey = 'userToken'
 
     validateLogin(username, password) {
-        return axios.post('http://localhost:8080/authenticate', { username, password });
+        return axios.post(API_URL + '/authenticate', { username, password });
     }
 
     createBasicAuthToken(username, password) {
