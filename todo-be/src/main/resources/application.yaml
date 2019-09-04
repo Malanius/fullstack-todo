@@ -3,6 +3,11 @@ spring:
     user:
       name: test
       password: test
+  jpa:
+    show-sql: true
+  h2:
+    console:
+      enabled: true
 
 jwt:
   signing:

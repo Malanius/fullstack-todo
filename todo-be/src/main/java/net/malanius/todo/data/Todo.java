@@ -3,15 +3,24 @@ package net.malanius.todo.data;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.util.Date;
 
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
+@Entity
 public class Todo {
 
-    private long id;
+    @Id
+    @GeneratedValue
+    private Long id;
+
     private String username;
     private String description;
     private Date deadline;
